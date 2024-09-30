@@ -53,7 +53,7 @@ RUN sed -iE "s/email@example.com/${login_text:-user}/g" /overleaf/services/web/a
 #rm /overleaf/services/web/app/views/project/editor/review-panel.pug && \
 #touch /overleaf/services/web/app/views/project/editor/review-panel.pug
 COPY ldap-overleaf-sl/template /overleaf/services/web/app/templates/project_files/example-project
-
+COPY ldap-overleaf-sl/ProjectCreationHandler.js /overleaf/services/web/app/src/Features/Project/ProjectCreationHandler.js
 ### Nginx and Certificates
 # enable https via letsencrypt
 # RUN rm /etc/nginx/sites-enabled/sharelatex.conf
