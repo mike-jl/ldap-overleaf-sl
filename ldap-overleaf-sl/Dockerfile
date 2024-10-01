@@ -52,8 +52,13 @@ RUN sed -iE "s/email@example.com/${login_text:-user}/g" /overleaf/services/web/a
 ### To remove comments entirly (bug https://github.com/overleaf/overleaf/issues/678)
 #rm /overleaf/services/web/app/views/project/editor/review-panel.pug && \
 #touch /overleaf/services/web/app/views/project/editor/review-panel.pug
-COPY ldap-overleaf-sl/template /overleaf/services/web/app/templates/project_files/example-project
+
+
+### Custom template as Example Project
+COPY ldap-overleaf-sl/template_ecl.zip /var/lib/overleaf/template_ecl.zip
 COPY ldap-overleaf-sl/ProjectCreationHandler.js /overleaf/services/web/app/src/Features/Project/ProjectCreationHandler.js
+COPY ldap-overleaf-sl/en.json /overleaf/services/web/locales/en.json
+
 ### Nginx and Certificates
 # enable https via letsencrypt
 # RUN rm /etc/nginx/sites-enabled/sharelatex.conf
