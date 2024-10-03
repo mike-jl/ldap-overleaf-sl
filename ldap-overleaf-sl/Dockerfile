@@ -57,7 +57,6 @@ RUN sed -iE "s/email@example.com/${login_text:-user}/g" /overleaf/services/web/a
 ### Custom template as Example Project
 COPY ldap-overleaf-sl/template_ecl.zip /var/lib/overleaf/template_ecl.zip
 COPY ldap-overleaf-sl/ProjectCreationHandler.js /overleaf/services/web/app/src/Features/Project/ProjectCreationHandler.js
-COPY ldap-overleaf-sl/en.json /overleaf/services/web/locales/en.json
 
 ### Nginx and Certificates
 # enable https via letsencrypt
