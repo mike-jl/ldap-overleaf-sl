@@ -20,6 +20,7 @@ COPY ldap-overleaf-sl/sharelatex/AuthenticationManager.js    /overleaf/services/
 COPY ldap-overleaf-sl/sharelatex/AuthenticationController.js /overleaf/services/web/app/src/Features/Authentication/
 COPY ldap-overleaf-sl/sharelatex/ContactController.js        /overleaf/services/web/app/src/Features/Contacts/
 COPY ldap-overleaf-sl/sharelatex/router.js                   /overleaf/services/web/app/src/router.js
+COPY ldap-overleaf-sl/sharelatex/ProjectCreationHandler.js   /overleaf/services/web/app/src/Features/Project/
 
 # Too much changes to do inline (>10 Lines).
 COPY ldap-overleaf-sl/sharelatex/settings.pug    /overleaf/services/web/app/views/user/
@@ -56,7 +57,6 @@ RUN sed -iE "s/email@example.com/${login_text:-user}/g" /overleaf/services/web/a
 
 ### Custom template as Example Project
 COPY ldap-overleaf-sl/template_ecl.zip /var/lib/overleaf/template_ecl.zip
-COPY ldap-overleaf-sl/ProjectCreationHandler.js /overleaf/services/web/app/src/Features/Project/ProjectCreationHandler.js
 
 ### Nginx and Certificates
 # enable https via letsencrypt

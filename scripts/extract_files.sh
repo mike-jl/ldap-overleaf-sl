@@ -14,6 +14,7 @@ CONTAINER_FILE_PATHS=(
     "/overleaf/services/web/app/views/layout/navbar-marketing.pug"
     "/overleaf/services/web/app/views/admin/index.pug"
     "/overleaf/services/web/app/views/admin/index.pug"
+    "/overleaf/services/web/app/src/Features/Project/ProjectCreationHandler.js"
 )
 
 FILENAMES=(
@@ -28,6 +29,7 @@ FILENAMES=(
     "navbar-marketing.pug"
     "admin-index.pug"
     "admin-sysadmin.pug"
+    "ProjectCreationHandler.js"
 )
 
 if [ "${#CONTAINER_FILE_PATHS[@]}" -ne "${#FILENAMES[@]}" ]; then
