@@ -1,0 +1,115 @@
+\documentclass{rapportECL}
+\addbibresource{biblio.bib}
+
+\title{Rapport ECL - Template} % Titre du fichier
+
+\begin{document}
+
+%----------- Informations du rapport ---------
+
+\titre{Titre du rapport} % Titre du fichier.pdf
+\UE{UE} % Nom de la UE
+\sujet{BE n°xx} % Nom du sujet
+
+\enseignant{
+  Prénom \textsc{Nom} \\
+  Prénom \textsc{Nom}
+} % Nom de l'enseignant
+
+\eleves{
+  Prénom \textsc{Nom} \\
+  Prénom \textsc{Nom} \\
+  Prénom \textsc{Nom} 
+} % Nom des élèves
+
+%----------- Initialisation -------------------
+
+\fairemarges % Afficher les marges
+\fairepagedegarde % Créer la page de garde
+\tabledematieres % Créer la table de matières
+
+%------------ Corps du rapport ----------------
+
+\section*{Introduction}
+\addcontentsline{toc}{section}{Introduction}
+
+\section{Première section}
+
+\subsection{Subsection}
+
+%------------- Commandes utiles ----------------
+
+\section{Des commandes utiles}
+
+\textbf{Insérer une image}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{images/ECLAIR.png}
+  \caption{Insérer une image.}
+  \label{fig:logo}
+\end{figure}
+
+ou la version raccourcie avec \texttt{\textbackslash insererfigure} :
+\insererfigure{images/vache.png}{0.4\textwidth}{Insérer une image
+avec une commande.}{fig:logo_raccourci}
+
+\textbf{Citer une figure} avec \texttt{\textbackslash ref} :
+\ref{fig:logo_raccourci}.\\
+
+\textbf{Insérer des expressions mathématiques} en bloc :
+\begin{equation*}
+  \int_{-\infty}^{\infty} e^{-x^2} \, \text{d}x = \sqrt{\pi}
+\end{equation*}
+
+ou bien en \textit{inline} : $\int_{-\infty}^{\infty} e^{-x^2} \,
+\text{d}x = \sqrt{\pi}$.\\
+
+\textbf{Insérer une série de calculs}
+\begin{align*}
+  x &= 0.999\ldots \\
+  10x &= 9.999\ldots \\
+  10x - x &= 9.999\ldots - 0.999\ldots \\
+  9x &= 9 \\
+  x &= 1 \\
+  0.999\ldots &= 1
+\end{align*}
+
+\textbf{Insérer une liste}
+\begin{itemize}
+  \item Premier niveau
+    \begin{itemize}
+      \item Deuxième niveau
+      \item Un autre élément au deuxième niveau
+    \end{itemize}
+  \item Un autre élément au premier niveau\\
+\end{itemize}
+
+\textbf{Insérer un tableau simple} \\
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|c|}
+    \hline
+    A & B & C \\
+    \hline
+    1 & 2 & 3 \\
+    4 & 5 & 6 \\
+    \hline
+  \end{tabular}
+  \caption{Un tableau simple.}
+  \label{tab:tableau_simple}
+\end{table}
+
+\textbf{Insérer du code} : \texttt{print("Hello, World!")}.\\
+
+\textbf{Citer une source} depuis \texttt{biblio.bib} avec
+\texttt{\textbackslash cite} : \cite{exemple_de_source}.\\
+
+\section*{Conclusion}
+\addcontentsline{toc}{section}{Conclusion}
+
+\newpage
+\section*{Bibliographie}
+\addcontentsline{toc}{section}{Bibliographie}
+
+\printbibliography[heading=none]
+\end{document}

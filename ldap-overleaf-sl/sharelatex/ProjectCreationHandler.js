@@ -113,7 +113,7 @@ async function createBasicProject(ownerId, projectName) {
 
 async function createExampleProject(ownerId, projectName) {
   const template_path = "/var/lib/overleaf/template_ecl.zip"
-  const project = await _createProjectFromZipArchive(
+  const project = await _createProjectFromTemplateDirectory(
     ownerId,
     projectName,
     template_path,
@@ -252,8 +252,7 @@ module.exports = {
 }
 
 
-async function _createProjectFromZipArchive(ownerId, defaultName, zipPath) {
-  const contentsPath = await _extractZip(zipPath)
+async function _createProjectFromTemplateDirectory(ownerId, defaultName, contentsPath) {
   const { path, content } =
     await ProjectRootDocManager.promises.findRootDocFileFromDirectory(
       contentsPath
@@ -284,7 +283,7 @@ async function _createProjectFromZipArchive(ownerId, defaultName, zipPath) {
       )
     throw err
   }
-  await fsExtra.remove(contentsPath)
+  // await fsExtra.remove(contentsPath)
   return project
 }
 
