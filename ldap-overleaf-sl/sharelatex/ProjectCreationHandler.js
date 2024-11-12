@@ -112,7 +112,7 @@ async function createBasicProject(ownerId, projectName) {
 }
 
 async function createExampleProject(ownerId, projectName) {
-  const template_path = "/var/lib/overleaf/template_ecl.zip"
+  const template_path = "/var/lib/overleaf/template_ecl"
   const project = await _createProjectFromTemplateDirectory(
     ownerId,
     projectName,
