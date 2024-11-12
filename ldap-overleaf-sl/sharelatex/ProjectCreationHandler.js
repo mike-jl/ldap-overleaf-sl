@@ -258,9 +258,7 @@ async function _createProjectFromTemplateDirectory(ownerId, defaultName, content
       contentsPath
     )
 
-  const projectName =
-    DocumentHelper.getTitleFromTexContent(content || '') || defaultName
-  const uniqueName = await _generateUniqueName(ownerId, projectName)
+  const uniqueName = await _generateUniqueName(ownerId, defaultName)
   const project = await createBlankProject(
     ownerId,
     uniqueName
