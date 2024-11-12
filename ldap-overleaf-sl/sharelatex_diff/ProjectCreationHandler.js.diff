@@ -48,13 +48,11 @@
 <   const segmentation = _.pick(attributes, [
 ---
 >   const segmentation = lodash.pick(attributes, [
-97,99c115,133
+97c115,133
 <   const project = await _createBlankProject(ownerId, projectName)
-< 
-<   await _addExampleProjectFiles(ownerId, projectName, project)
 ---
->   const template_path = "/var/lib/overleaf/template_ecl.zip"
->   const project = await _createProjectFromZipArchive(
+>   const template_path = "/var/lib/overleaf/template_ecl"
+>   const project = await _createProjectFromTemplateDirectory(
 >     ownerId,
 >     projectName,
 >     template_path,
@@ -72,6 +70,9 @@
 >       }
 >     }
 >   )
+99,100d134
+<   await _addExampleProjectFiles(ownerId, projectName, project)
+< 
 108,144d141
 < async function _addExampleProjectFiles(ownerId, projectName, project) {
 <   const mainDocLines = await _buildTemplate(
@@ -114,19 +115,17 @@
 <   const output = _.template(template.toString())(data)
 ---
 >   const output = lodash.template(template.toString())(data)
-255a253,400
+254a252,285
+> }
 > 
 > 
-> async function _createProjectFromZipArchive(ownerId, defaultName, zipPath) {
->   const contentsPath = await _extractZip(zipPath)
+> async function _createProjectFromTemplateDirectory(ownerId, defaultName, contentsPath) {
 >   const { path, content } =
 >     await ProjectRootDocManager.promises.findRootDocFileFromDirectory(
 >       contentsPath
 >     )
 > 
->   const projectName =
->     DocumentHelper.getTitleFromTexContent(content || '') || defaultName
->   const uniqueName = await _generateUniqueName(ownerId, projectName)
+>   const uniqueName = await _generateUniqueName(ownerId, defaultName)
 >   const project = await createBlankProject(
 >     ownerId,
 >     uniqueName
@@ -149,9 +148,9 @@
 >       )
 >     throw err
 >   }
->   await fsExtra.remove(contentsPath)
+>   // await fsExtra.remove(contentsPath)
 >   return project
-> }
+255a287,397
 > 
 > async function _extractZip(zipPath) {
 >   const destination = path.join(
