@@ -1,6 +1,4 @@
-326a327,346
->   },
-> 
+328a329,419
 > 
 > // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 >   oauth2Redirect(req, res, next) {
@@ -19,7 +17,8 @@
 >       + `&state=${state}`
 >     )
 >     res.redirect(authURL)
-328a349,419
+>   },
+> 
 >   async oauth2Callback(req, res, next) {
 >     console.log(`OAuth, receive code ${req.query.code} and state ${req.query.state}`)
 >     const saveState = req.session.oauth2State

@@ -20,7 +20,7 @@ RUN npm install -g npm && \
     npm install ldap-escape ldapts-search ldapts@3.2.4 && \
     # npm install bcrypt@5.0.0 && \
     apt-get update && \
-    apt-get -y install libxml-libxslt-perl cpanminus libbtparse2 python-pygments && \
+    apt-get -y install libxml-libxslt-perl cpanminus libbtparse2 python3-pygments && \
     # now install latest texlive2023 from tlmgr
     tlmgr update --self --all  && \
     tlmgr install scheme-full --verify-repo=none && \
@@ -33,6 +33,7 @@ ENV PATH="/usr/local/texlive/2023/bin/x86_64-linux:${PATH};"
 
 # overwrite some files
 COPY sharelatex/AuthenticationManager.js    /overleaf/services/web/app/src/Features/Authentication/
+COPY sharelatex/UserController.js           /overleaf/services/web/app/src/Features/User/
 COPY sharelatex/AuthenticationController.js /overleaf/services/web/app/src/Features/Authentication/
 COPY sharelatex/ContactController.js        /overleaf/services/web/app/src/Features/Contacts/
 COPY sharelatex/router.js                   /overleaf/services/web/app/src/router.js

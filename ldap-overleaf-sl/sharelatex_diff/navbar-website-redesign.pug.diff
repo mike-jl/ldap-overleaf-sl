@@ -1,23 +1,9 @@
-29,32c29,41
+29,124c29,89
 < 		- var canDisplayAdminMenu = hasAdminAccess()
 < 		- var canDisplayAdminRedirect = canRedirectToAdminDomain()
 < 		- var canDisplaySplitTestMenu = hasFeature('saas') && (canDisplayAdminMenu || (getSessionUser() && getSessionUser().staffAccess && (getSessionUser().staffAccess.splitTestMetrics || getSessionUser().staffAccess.splitTestManagement)))
 < 		- var canDisplaySurveyMenu = hasFeature('saas') && canDisplayAdminMenu
----
-> 		.navbar-collapse.collapse#navbar-main-collapse
-> 			ul.nav.navbar-nav.navbar-right
-> 				if (getSessionUser() && getSessionUser().isAdmin)
-> 					li.dropdown.subdued
-> 						a.dropdown-toggle(
-> 							href="#",
-> 							role="button",
-> 							aria-haspopup="true",
-> 							aria-expanded="false",
-> 							data-toggle="dropdown"
-> 						)
-> 							| Admin
-> 							span.caret
-34,64c43,54
+< 
 < 		if (typeof(suppressNavbarRight) == "undefined")
 < 			.navbar-collapse.collapse#navbar-main-collapse
 < 				ul.nav.navbar-nav.navbar-right
@@ -49,20 +35,7 @@
 < 								if canDisplaySurveyMenu
 < 									li
 < 										a(href="/admin/survey") Manage Surveys
----
-> 				// loop over header_extras
-> 				each item in nav.header_extras
-> 					-
-> 						if ((item.only_when_logged_in && getSessionUser())
-> 							|| (item.only_when_logged_out && (!getSessionUser()))
-> 							|| (!item.only_when_logged_out && !item.only_when_logged_in && !item.only_content_pages)
-> 							|| (item.only_content_pages && (typeof(suppressNavContentLinks) == "undefined" || !suppressNavContentLinks))
-> 						){ 
-> 							var showNavItem = true
-> 						} else {
-> 							var showNavItem = false
-> 						}
-66,77c56,89
+< 
 < 					// loop over header_extras
 < 					each item in nav.header_extras
 < 						-
@@ -75,42 +48,7 @@
 < 							} else {
 < 								var showNavItem = false
 < 							}
----
-> 					if showNavItem
-> 						if item.dropdown
-> 							li.dropdown(class=item.class)
-> 								a.dropdown-toggle(
-> 									href="#",
-> 									role="button",
-> 									aria-haspopup="true",
-> 									aria-expanded="false",
-> 									data-toggle="dropdown"
-> 								)
-> 									| !{translate(item.text)}
-> 									span.caret
-> 								ul.dropdown-menu
-> 									each child in item.dropdown
-> 										if child.divider
-> 											li.divider
-> 										else if child.isContactUs
-> 											li
-> 												a(data-ol-open-contact-form-modal="contact-us" href)
-> 													span(event-tracking="menu-clicked-contact" event-tracking-mb="true" event-tracking-trigger="click")
-> 														| #{translate("contact_us")}
-> 										else
-> 											li
-> 												if child.url
-> 													a(
-> 														href=child.url,
-> 														class=child.class,
-> 														event-tracking=child.event
-> 														event-tracking-mb="true"
-> 														event-tracking-trigger="click"
-> 														event-segmentation=child.eventSegmentation
-> 													) !{translate(child.text)}
-> 												else
-> 													| !{translate(child.text)}
-79,125d90
+< 
 < 						if showNavItem
 < 							if item.dropdown
 < 								li.dropdown(class=item.class)
@@ -157,7 +95,68 @@
 < 										) !{translate(item.text)}
 < 									else
 < 										| !{translate(item.text)}
-< 
+---
+> 		.navbar-collapse.collapse#navbar-main-collapse
+> 			ul.nav.navbar-nav.navbar-right
+> 				if (getSessionUser() && getSessionUser().isAdmin)
+> 					li.dropdown.subdued
+> 						a.dropdown-toggle(
+> 							href="#",
+> 							role="button",
+> 							aria-haspopup="true",
+> 							aria-expanded="false",
+> 							data-toggle="dropdown"
+> 						)
+> 							| Admin
+> 							span.caret
+> 
+> 				// loop over header_extras
+> 				each item in nav.header_extras
+> 					-
+> 						if ((item.only_when_logged_in && getSessionUser())
+> 							|| (item.only_when_logged_out && (!getSessionUser()))
+> 							|| (!item.only_when_logged_out && !item.only_when_logged_in && !item.only_content_pages)
+> 							|| (item.only_content_pages && (typeof(suppressNavContentLinks) == "undefined" || !suppressNavContentLinks))
+> 						){ 
+> 							var showNavItem = true
+> 						} else {
+> 							var showNavItem = false
+> 						}
+> 
+> 					if showNavItem
+> 						if item.dropdown
+> 							li.dropdown(class=item.class)
+> 								a.dropdown-toggle(
+> 									href="#",
+> 									role="button",
+> 									aria-haspopup="true",
+> 									aria-expanded="false",
+> 									data-toggle="dropdown"
+> 								)
+> 									| !{translate(item.text)}
+> 									span.caret
+> 								ul.dropdown-menu
+> 									each child in item.dropdown
+> 										if child.divider
+> 											li.divider
+> 										else if child.isContactUs
+> 											li
+> 												a(data-ol-open-contact-form-modal="contact-us" href)
+> 													span(event-tracking="menu-clicked-contact" event-tracking-mb="true" event-tracking-trigger="click")
+> 														| #{translate("contact_us")}
+> 										else
+> 											li
+> 												if child.url
+> 													a(
+> 														href=child.url,
+> 														class=child.class,
+> 														event-tracking=child.event
+> 														event-tracking-mb="true"
+> 														event-tracking-trigger="click"
+> 														event-segmentation=child.eventSegmentation
+> 													) !{translate(child.text)}
+> 												else
+> 													| !{translate(child.text)}
 128,139d92
 < 						// register link
 < 						if hasFeature('registration-page')

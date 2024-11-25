@@ -7,7 +7,7 @@
 < 					.card
 ---
 > 					.card(ng-controller="RegisterUsersController")
-12,18c11,25
+12,18c11,40
 < 						div(data-ol-bookmarkable-tabset)
 < 							ul.nav.nav-tabs(role="tablist")
 < 								+bookmarkable-tabset-header('system-messages', 'System Messages', true)
@@ -31,7 +31,22 @@
 > 								form(method='post', action='/admin/messages/clear')
 > 									input(name="_csrf", type="hidden", value=csrfToken)
 > 									button.btn.btn-danger(type="submit") Clear all messages
-20,37d26
+> 
+> 
+> 							tab(heading="Register non LDAP User")
+> 								form.form
+> 								.row
+> 									.col-md-4.col-xs-8
+> 										input.form-control(
+> 										name="email",
+> 										type="text",
+> 										placeholder="jane@example.com, joe@example.com",
+> 										ng-model="inputs.emails",
+> 										on-enter="registerUsers()"
+> 									)
+> 									.col-md-8.col-xs-4
+> 										button.btn.btn-primary(ng-click="registerUsers()") #{translate("register")}
+20,74c42,43
 < 							.tab-content
 < 								.tab-pane.active(
 < 									role="tabpanel"
@@ -50,7 +65,7 @@
 < 									form(method='post', action='/admin/messages/clear')
 < 										input(name="_csrf", type="hidden", value=csrfToken)
 < 										button.btn.btn-danger(type="submit") Clear all messages
-39,49c28,40
+< 
 < 								.tab-pane(
 < 									role="tabpanel"
 < 									id='open-sockets'
@@ -62,21 +77,7 @@
 < 													ul
 < 														each agent in agents
 < 															li #{agent}
----
-> 							tab(heading="Register non LDAP User")
-> 								form.form
-> 								.row
-> 									.col-md-4.col-xs-8
-> 										input.form-control(
-> 										name="email",
-> 										type="text",
-> 										placeholder="jane@example.com, joe@example.com",
-> 										ng-model="inputs.emails",
-> 										on-enter="registerUsers()"
-> 									)
-> 									.col-md-8.col-xs-4
-> 										button.btn.btn-primary(ng-click="registerUsers()") #{translate("register")}
-51,62c42,43
+< 
 < 								.tab-pane(
 < 									role="tabpanel"
 < 									id='open-close-editor'
@@ -89,28 +90,27 @@
 < 												input(name="_csrf", type="hidden", value=csrfToken)
 < 												button.btn.btn-danger(type="submit") Close Editor
 < 											p.small Will stop anyone opening the editor. Will NOT disconnect already connected users.
----
-> 									.row-spaced(ng-show="error").ng-cloak.text-danger
-> 										p Sorry, an error occured
-64,68c45,48
+< 
 < 										.row-spaced
 < 											form(method='post',action='/admin/disconnectAllUsers')
 < 												input(name="_csrf", type="hidden", value=csrfToken)
 < 												button.btn.btn-danger(type="submit") Disconnect all users
 < 											p.small Will force disconnect all users with the editor open. Make sure to close the editor first to avoid them reconnecting.
----
-> 									.row-spaced(ng-show="users.length > 0").ng-cloak.text-success
-> 										p We've sent out welcome emails to the registered users.
-> 										p You can also manually send them URLs below to allow them to reset their password and log in for the first time.
-> 										p (Password reset tokens will expire after one week and the user will need registering again).
-70,75c50,58
+< 
 < 										.row-spaced
 < 											form(method='post',action='/admin/openEditor')
 < 												input(name="_csrf", type="hidden", value=csrfToken)
 < 												button.btn.btn-danger(type="submit") Reopen Editor
 < 											p.small Will reopen the editor after closing.
-< 
 ---
+> 									.row-spaced(ng-show="error").ng-cloak.text-danger
+> 										p Sorry, an error occured
+75a45,58
+> 									.row-spaced(ng-show="users.length > 0").ng-cloak.text-success
+> 										p We've sent out welcome emails to the registered users.
+> 										p You can also manually send them URLs below to allow them to reset their password and log in for the first time.
+> 										p (Password reset tokens will expire after one week and the user will need registering again).
+> 
 > 									hr(ng-show="users.length > 0").ng-cloak
 > 									table(ng-show="users.length > 0").table.table-striped.ng-cloak
 > 										tr

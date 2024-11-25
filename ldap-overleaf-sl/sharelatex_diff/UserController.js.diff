@@ -1,0 +1,11 @@
+461c461,468
+<   const redirectUrl = requestedRedirect || '/login'
+---
+>   
+> 
+>   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>   let redirectUrl = requestedRedirect || '/login'
+>   if (process.env.OAUTH2_ENABLED === 'true' && process.env.OAUTH2_LOGOUT_URL) {
+>     redirectUrl = process.env.OAUTH2_LOGOUT_URL
+>   }
+>   // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
