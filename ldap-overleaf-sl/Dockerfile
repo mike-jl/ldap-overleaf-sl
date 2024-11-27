@@ -1,4 +1,5 @@
-FROM sharelatex/sharelatex:5.1.1
+FROM tuetenk0pp/sharelatex-full:5.1.1
+# FROM sharelatex/sharelatex:5.1.1
 # FROM sharelatex/sharelatex:latest
 # latest might not be tested 
 # e.g. the AuthenticationManager.js script had to be adapted after versions 2.3.1 
@@ -14,22 +15,22 @@ ARG admin_is_sysadmin
 WORKDIR /overleaf/services/web
 
     # install latest npm
-RUN npm install -g npm && \
-    ## clean cache (might solve issue #2)
-    # npm cache clean --force && \
-    npm install ldap-escape ldapts-search ldapts@3.2.4 && \
-    # npm install bcrypt@5.0.0 && \
-    apt-get update && \
-    apt-get -y install libxml-libxslt-perl cpanminus libbtparse2 python3-pygments && \
-    # now install latest texlive2023 from tlmgr
-    tlmgr update --self --all  && \
-    tlmgr install scheme-full --verify-repo=none && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# RUN npm install -g npm && \
+#     ## clean cache (might solve issue #2)
+#     # npm cache clean --force && \
+#     npm install ldap-escape ldapts-search ldapts@3.2.4 && \
+#     # npm install bcrypt@5.0.0 && \
+#     apt-get update && \
+#     apt-get -y install libxml-libxslt-perl cpanminus libbtparse2 python3-pygments && \
+#     # now install latest texlive2023 from tlmgr
+#     tlmgr update --self --all  && \
+#     tlmgr install scheme-full --verify-repo=none && \
+#     apt-get clean && \
+#     rm -rf /var/lib/apt/lists/*
 
 # latex-bin must be on path to be found in compilation process
 # needed for biber epstopdf and others
-ENV PATH="/usr/local/texlive/2023/bin/x86_64-linux:${PATH};"
+ENV PATH="/usr/local/texlive/2024/bin/aarch64-linux:${PATH};"
 
 # overwrite some files
 COPY sharelatex/AuthenticationManager.js    /overleaf/services/web/app/src/Features/Authentication/
